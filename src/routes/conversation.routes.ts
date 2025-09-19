@@ -414,10 +414,6 @@ export function createConversationRoutes(
         throw new CUIError('MISSING_CUSTOM_NAME', 'customName is required', 400);
       }
       
-      // Validate custom name length (reasonable limit)
-      if (customName.length > 200) {
-        throw new CUIError('CUSTOM_NAME_TOO_LONG', 'customName must be 200 characters or less', 400);
-      }
       
       // Check if session exists by trying to get its metadata
       const metadata = await historyReader.getConversationMetadata(sessionId);
@@ -488,16 +484,6 @@ export function createConversationRoutes(
         } as SessionUpdateResponse & { error: string });
       }
       
-      // Validate fields if provided
-      if (updates.customName !== undefined && updates.customName.length > 200) {
-        logger.debug('Custom name too long', { requestId, length: updates.customName.length });
-        return res.status(400).json({
-          success: false,
-          sessionId,
-          updatedFields: {} as SessionInfo,
-          error: 'Custom name must be 200 characters or less'
-        } as SessionUpdateResponse & { error: string });
-      }
       
       // Prepare updates object - map camelCase to snake_case
       const sessionUpdates: Partial<SessionInfo> = {};
