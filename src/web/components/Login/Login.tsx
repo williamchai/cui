@@ -14,8 +14,8 @@ export default function Login({ onLogin }: LoginProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate token format (32 character hex string)
-    if (token.length !== 32 || !/^[a-f0-9]+$/.test(token)) {
+    // Validate token format (hex string)
+    if (!/^[a-f0-9]+$/.test(token)) {
       setError('Invalid token');
       return;
     }
