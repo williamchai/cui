@@ -37,8 +37,8 @@ function extractTokenFromFragment(): string | null {
   }
   
   const token = fragment.substring(7); // Remove '#token='
-  if (token.length !== 32 || !/^[a-f0-9]+$/.test(token)) {
-    console.warn('Invalid token format in URL fragment');
+  if (!token || token.trim().length === 0) {
+    console.warn('Empty token in URL fragment');
     return null;
   }
   
