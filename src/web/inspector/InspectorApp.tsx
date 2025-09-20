@@ -1038,9 +1038,6 @@ function InspectorApp() {
                 Custom Name <span className="text-neutral-400 text-[10px]">(empty to clear)</span>
               </Label>
                   <Input id="renameCustomName" type="text" value={renameCustomName} onChange={(e) => setRenameCustomName(e.target.value)} placeholder="My Project Discussion" maxLength={200} className="font-mono" />
-              <div className="text-xs text-neutral-600 mt-0.5">
-                {renameCustomName.length}/200 characters
-              </div>
             </div>
             <div className="my-2.5 p-2.5 bg-neutral-50 rounded">
               <div className="flex gap-4">
